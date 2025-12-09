@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: #0A0F1F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #F3F4F6;
+            font-family: 'poppins';
+            flex-direction: column;
+            overflow-x: none;
+        }
+
+        .parent {
+            margin-top: 20px;
+            padding: 20px;
+            text-align: center;
+            background: #101A33;
+            border-radius: 20px;
+            box-shadow: 0px 6px 30px #a4a4aa36;
+        }
+
+        input {
+            padding: 6px;
+            margin: 3px;
+            font-family: 'poppins';
+            font-weight: bolder;
+            border-radius: 12px;
+            outline: none;
+            border: 2px solid white;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            border: 2px solid aqua;
+        }
+
+        label {
+            display: flex;
+            margin-bottom: -8px;
+            font-size: small;
+        }
+
+        .btn {
+            padding: 6px;
+            margin-top: 10px;
+            border-radius: 15px;
+            font-family: 'poppins';
+            font-weight: bolder;
+            width: 70%;
+            background: #8B84FF;
+            border: none;
+        }
+
+        .btn:hover {
+            box-shadow: 0px 10px 40px #8B84FF;
+            transform: translateY(-2px);
+            transition: all 0.3s;
+        }
+
+        .btn:active {
+            transform: translateY(0px);
+        }
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            padding: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
+
+        }
+
+        li {
+            border-radius: 12px;
+            font-family: 'poppins';
+            padding: 10px;
+            text-align: center;
+            background: #101A33;
+            box-shadow: 0px 6px 30px #a4a4aa36;
+            list-style: none;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <h3>Make a note</h3>
+        <div class="lab">
+            <label for="title">Title</label>
+            <input id="int" type="text" placeholder="Enter a title"><br>
+            <label for="content">Contnet</label>
+            <input id="intt" type="text" placeholder="Enter content">
+        </div>
+
+        <button class="btn" id="addnote">Add note</button>
+    </div>
+    <ul id="notes" class="note"></ul>
+</body>
+<script>
+    let count = 0
+    let int = document.getElementById("int")
+    let intt = document.getElementById("intt")
+    let notes = document.getElementById("notes")
+    let addnote = document.getElementById("addnote")
+
+    addnote.addEventListener("click", () => {
+
+        const title = int.value.trim();
+        const content = intt.value.trim();
+
+        if (title === "" || content === "") {
+            alert("Enter something in the inputs")
+            return
+        }
+        let li = document.createElement("li")
+        document.body.classList.add("li")
+
+        li.innerHTML = `<h3>${title}</h3>
+                        <p>${content}</p>
+                     <button class="btn">Delete</button>`
+        let del=li.querySelector(".btn")
+        del.addEventListener("click",()=>{
+            li.remove()
+        })
+
+                    
+        count++
+        int.value = ""
+        intt.value = ""
+        notes.appendChild(li)
+    })
+
+
+</script>
+
+</html>
